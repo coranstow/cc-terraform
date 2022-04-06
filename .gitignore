@@ -1,0 +1,7 @@
+/.idea/
+.*
+secrets.tfvars
+secrets.auto.tfvars
+terraform.tfstate
+terraform.tfstate.backup
+ServiceAccount.txt
