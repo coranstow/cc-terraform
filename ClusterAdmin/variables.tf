@@ -9,11 +9,6 @@ variable "confluent_cloud_api_secret" {
   default     = ""
 }
 
-variable "confluent_cloud_organisation_id" {
-  description = "The ID of the Organisation"
-  default     = ""
-}
-
 variable "confluent_cloud_environment_id" {
   description = "The ID of the Environment that the Cluster is located in"
   default     = ""
@@ -24,36 +19,30 @@ variable "confluent_cloud_cluster_id" {
   default     = ""
 }
 
-variable "confluent_cloud_service_account" {
-  description = "The Service account with management rights for the cluster"
-  default     = ""
-}
 
-
-variable "confluent_cloud_cluster_api_key" {
+variable "kafka_api_key" {
   description = "The API Key for the Service Account "
   default     = ""
 }
 
-variable "confluent_cloud_cluster_api_secret" {
+variable "kafka_api_secret" {
   description = "The secret for the API Key"
   default     = ""
 }
 
-variable "confluent_cloud_cluster_http_endpoint" {
-  description = "The http endpoint of the cluster"
-  type = string
-  default = ""
-}
+#variable "topics" {
+#  description = "Topics that need to be defined"
+#  type = map
+#}
 
-variable "topics" {
-  description = "Topics that need to be defined"
-  type = map
-}
 
-variable "kafka_acls" {
-  description = "ACLs for topics"
-  type = map
-}
+#variable "kafka_cluster_acls" {
+#  description = "ACLs for the whole clsuter"
+#  type = map
+#}
+#variable "kafka_topic_acls" {
+#  description = "ACLs for topics"
+#  type = map
+#}
 
 

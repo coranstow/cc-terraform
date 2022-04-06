@@ -4,6 +4,10 @@
 #}
 
 ## Cluster
-#data "confluentcloud_kafka_cluster" "current_cluster" {
-#  id = var.confluent_cloud_cluster_id
-#}
+data "confluentcloud_kafka_cluster" "current_cluster" {
+  id = var.confluent_cloud_cluster_id
+  environment {
+    id = var.confluent_cloud_environment_id
+  }
+}
+
