@@ -1,0 +1,16 @@
+Environments = {
+  "test-terraform-pre-prod-env" = "ID = env-57wq0n, Display Name = Pre-Production_test_terraform"
+  "test-terraform-staging-env" = "ID = env-k8nkp2, Display Name = Staging_test_terraform"
+}
+RoleBindings = {
+  "test-terraform-pre-prod-env-sa-env-admin" = "rb-d0Lm6, User:sa-5w8zz2, EnvironmentAdmin, crn://confluent.cloud/organization=822519a6-994c-43e6-a4df-9d877520f892/environment=env-57wq0n"
+  "test-terraform-staging-env-sa-env-admin" = "rb-4kA70, User:sa-nwo00z, EnvironmentAdmin, crn://confluent.cloud/organization=822519a6-994c-43e6-a4df-9d877520f892/environment=env-k8nkp2"
+}
+ServiceAccounts = {
+  "test-terraform-pre-prod-cluster-sa" = "ID = sa-63dzz2, Display Name = test-terraform-pre-prod-cluster-sa"
+  "test-terraform-pre-prod-cluster-user" = "ID = sa-3r200o, Display Name = test-terraform-pre-prod-cluster-user"
+  "test-terraform-pre-prod-env-sa" = "ID = sa-5w8zz2, Display Name = test-terraform-pre-prod-env-sa"
+  "test-terraform-staging-cluster-sa" = "ID = sa-d9k88d, Display Name = test-terraform-staging-cluster-sa"
+  "test-terraform-staging-cluster-user" = "ID = sa-zgqnnd, Display Name = test-terraform-staging-cluster-user"
+  "test-terraform-staging-env-sa" = "ID = sa-nwo00z, Display Name = test-terraform-staging-env-sa"
+}

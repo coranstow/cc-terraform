@@ -7,13 +7,7 @@ This is for resources at an Organization level.
 
 ## Administers
 - Service Accounts
-- API Keys
-- Environments
-- Environment RoleBindings
-- Clusters
-- ClusterAdmin RoleBindings
-- Topics
-- Topic RoleBindings
+
 
 Resources include:
 * Cloud

@@ -1,21 +1,19 @@
 
 
 ## Environment
-environments = {
-  test-terraform-pre-prod-env = "Pre-Production_test_terraform"
-  test-terraform-staging-env = "Staging_test_terraform"
-}
+#environments = {
+#  pre-prod-env = "Pre-Production_Terraform_Managed"
+#  staging-env = "Staging_Terraform_Managed"
+#}
 
+# Service accounts that exist in the envronment
 service_accounts = {
-  test-terraform-pre-prod-env-sa = "Service Account for Coran's Terraform Environment/Cluster testing."
-  test-terraform-pre-prod-cluster-sa = "Service Account for Coran's Terraform Environment/Cluster testing."
-  test-terraform-pre-prod-cluster-user = "Service Account for Coran's Terraform Environment/Cluster testing."
-  test-terraform-staging-env-sa = "Service Account for Coran's Terraform Environment/Cluster testing."
-  test-terraform-staging-cluster-sa = "Service Account for Coran's Terraform Environment/Cluster testing."
-  test-terraform-staging-cluster-user = "Service Account for Coran's Terraform Environment/Cluster testing."
+  dev-dedicated-cluster-sa = "Terraform Managed Cluster Admin Service Account for Development Environment Dedicated Cluster"
+  dev-dedicated-cluster-user = "Terraform Managed Application User Service Account for Development Environment Dedicated Cluster"
 }
 
-role_bindings = {
-  test-terraform-pre-prod-env-sa-env-admin = ["test-terraform-pre-prod-env-sa", "test-terraform-pre-prod-env", "EnvironmentAdmin"]
-  test-terraform-staging-env-sa-env-admin = ["test-terraform-staging-env-sa", "test-terraform-staging-env", "EnvironmentAdmin"]
-}
+#role_bindings = {
+#  pre-prod-env-sa-env-admin = ["pre-prod-env-sa", "pre-prod-env", "EnvironmentAdmin"]
+#  staging-env-sa-env-admin = ["staging-env-sa", "staging-env", "EnvironmentAdmin"]
+#}
+

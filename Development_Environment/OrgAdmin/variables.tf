@@ -13,17 +13,3 @@ variable "confluent_cloud_organisation_id" {
   default     = ""
 }
 
-#variable "environments" {
-#  description = "The Environments"
-#  type  = map(string)
-#}
-
-variable "service_accounts" {
-  description = "Service accounts that need to be defined"
-  type = map
-}
-
-#variable "role_bindings" {
-#  description = "RoleBindings for Service Accounts"
-#  type = map
-#}
