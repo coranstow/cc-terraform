@@ -26,9 +26,9 @@ resource "confluent_connector" "pizza_orders_connector" {
     confluent_kafka_acl.app-connector-write-on-data-preview-topics,
   ]
 
-  lifecycle {
-    prevent_destroy = true
-  }
+#  lifecycle {
+#    prevent_destroy = true
+#  }
 }
 
 resource "confluent_kafka_acl" "app-connector-describe-on-cluster" {
@@ -312,38 +312,38 @@ resource "confluent_kafka_acl" "admin-read-on-connect-cg" {
 #  }
 #}
 
-resource "confluent_connector" "stock_trades_connector" {
-  environment {
-    id = data.confluent_environment.current.id
-  }
-  kafka_cluster {
-    id = confluent_kafka_cluster.dedicated.id
-  }
-
-  config_sensitive = {}
-
-  config_nonsensitive = {
-    "connector.class"          = "DatagenSource"
-    "name"                     = "stock_trades_connector"
-    "kafka.auth.mode"          = "SERVICE_ACCOUNT"
-    "kafka.service.account.id" = data.confluent_service_account.clusteruser.id
-    "kafka.topic"              = confluent_kafka_topic.stock_trades.topic_name
-    "output.data.format"       = "JSON"
-    "quickstart"               = "STOCK_TRADES"
-    "tasks.max"                = "1"
-  }
-
-  depends_on = [
-    confluent_kafka_acl.app-connector-describe-on-cluster,
-    confluent_kafka_acl.app-connector-write-on-stock_trades-topic,
-    confluent_kafka_acl.app-connector-create-on-data-preview-topics,
-    confluent_kafka_acl.app-connector-write-on-data-preview-topics,
-  ]
-
-#  lifecycle {
-#    prevent_destroy = true
+#resource "confluent_connector" "stock_trades_connector" {
+#  environment {
+#    id = data.confluent_environment.current.id
 #  }
-}
+#  kafka_cluster {
+#    id = confluent_kafka_cluster.dedicated.id
+#  }
+#
+#  config_sensitive = {}
+#
+#  config_nonsensitive = {
+#    "connector.class"          = "DatagenSource"
+#    "name"                     = "stock_trades_connector"
+#    "kafka.auth.mode"          = "SERVICE_ACCOUNT"
+#    "kafka.service.account.id" = data.confluent_service_account.clusteruser.id
+#    "kafka.topic"              = confluent_kafka_topic.stock_trades.topic_name
+#    "output.data.format"       = "JSON"
+#    "quickstart"               = "STOCK_TRADES"
+#    "tasks.max"                = "1"
+#  }
+#
+#  depends_on = [
+#    confluent_kafka_acl.app-connector-describe-on-cluster,
+#    confluent_kafka_acl.app-connector-write-on-stock_trades-topic,
+#    confluent_kafka_acl.app-connector-create-on-data-preview-topics,
+#    confluent_kafka_acl.app-connector-write-on-data-preview-topics,
+#  ]
+#
+##  lifecycle {
+##    prevent_destroy = true
+##  }
+#}
 resource "confluent_kafka_acl" "app-connector-write-on-stock_trades-topic" {
   kafka_cluster {
     id = confluent_kafka_cluster.dedicated.id
@@ -362,52 +362,52 @@ resource "confluent_kafka_acl" "app-connector-write-on-stock_trades-topic" {
   }
 }
 
-resource "confluent_connector" "stock_trades_connector2" {
-  environment {
-    id = data.confluent_environment.current.id
-  }
-  kafka_cluster {
-    id = confluent_kafka_cluster.dedicated.id
-  }
-
-  config_sensitive = {}
-
-  config_nonsensitive = {
-    "connector.class"          = "DatagenSource"
-    "name"                     = "stock_trades_connector2"
-    "kafka.auth.mode"          = "SERVICE_ACCOUNT"
-    "kafka.service.account.id" = data.confluent_service_account.clusteruser.id
-    "kafka.topic"              = confluent_kafka_topic.stock_trades_2.topic_name
-    "output.data.format"       = "JSON"
-    "quickstart"               = "STOCK_TRADES"
-    "tasks.max"                = "5"
-  }
-
-  depends_on = [
-    confluent_kafka_acl.app-connector-describe-on-cluster,
-    confluent_kafka_acl.app-connector-write-on-stock_trades2-topic,
-    confluent_kafka_acl.app-connector-create-on-data-preview-topics,
-    confluent_kafka_acl.app-connector-write-on-data-preview-topics,
-  ]
-
-  #  lifecycle {
-  #    prevent_destroy = true
-  #  }
-}
-resource "confluent_kafka_acl" "app-connector-write-on-stock_trades2-topic" {
-  kafka_cluster {
-    id = confluent_kafka_cluster.dedicated.id
-  }
-  resource_type = "TOPIC"
-  resource_name = confluent_kafka_topic.stock_trades_2.topic_name
-  pattern_type  = "LITERAL"
-  principal     = "User:${data.confluent_service_account.clusteruser.id}"
-  host          = "*"
-  operation     = "WRITE"
-  permission    = "ALLOW"
-  rest_endpoint = confluent_kafka_cluster.dedicated.rest_endpoint
-  credentials {
-    key    = confluent_api_key.dedicated-cluster-admin-api-key.id
-    secret = confluent_api_key.dedicated-cluster-admin-api-key.secret
-  }
-}
+#resource "confluent_connector" "stock_trades_connector2" {
+#  environment {
+#    id = data.confluent_environment.current.id
+#  }
+#  kafka_cluster {
+#    id = confluent_kafka_cluster.dedicated.id
+#  }
+#
+#  config_sensitive = {}
+#
+#  config_nonsensitive = {
+#    "connector.class"          = "DatagenSource"
+#    "name"                     = "stock_trades_connector2"
+#    "kafka.auth.mode"          = "SERVICE_ACCOUNT"
+#    "kafka.service.account.id" = data.confluent_service_account.clusteruser.id
+#    "kafka.topic"              = confluent_kafka_topic.stock_trades_2.topic_name
+#    "output.data.format"       = "JSON"
+#    "quickstart"               = "STOCK_TRADES"
+#    "tasks.max"                = "5"
+#  }
+#
+#  depends_on = [
+#    confluent_kafka_acl.app-connector-describe-on-cluster,
+#    confluent_kafka_acl.app-connector-write-on-stock_trades2-topic,
+#    confluent_kafka_acl.app-connector-create-on-data-preview-topics,
+#    confluent_kafka_acl.app-connector-write-on-data-preview-topics,
+#  ]
+#
+#  #  lifecycle {
+#  #    prevent_destroy = true
+#  #  }
+#}
+#resource "confluent_kafka_acl" "app-connector-write-on-stock_trades2-topic" {
+#  kafka_cluster {
+#    id = confluent_kafka_cluster.dedicated.id
+#  }
+#  resource_type = "TOPIC"
+#  resource_name = confluent_kafka_topic.stock_trades_2.topic_name
+#  pattern_type  = "LITERAL"
+#  principal     = "User:${data.confluent_service_account.clusteruser.id}"
+#  host          = "*"
+#  operation     = "WRITE"
+#  permission    = "ALLOW"
+#  rest_endpoint = confluent_kafka_cluster.dedicated.rest_endpoint
+#  credentials {
+#    key    = confluent_api_key.dedicated-cluster-admin-api-key.id
+#    secret = confluent_api_key.dedicated-cluster-admin-api-key.secret
+#  }
+#}

@@ -13,9 +13,9 @@ resource "confluent_kafka_topic" "pizza_orders" {
     key = confluent_api_key.dedicated-cluster-admin-api-key.id
     secret = confluent_api_key.dedicated-cluster-admin-api-key.secret
   }
-  lifecycle {
-    prevent_destroy = true
-  }
+#  lifecycle {
+#    prevent_destroy = true
+#  }
 }
 
 resource "confluent_kafka_topic" "stock_trades" {
@@ -33,9 +33,9 @@ resource "confluent_kafka_topic" "stock_trades" {
     key = confluent_api_key.dedicated-cluster-admin-api-key.id
     secret = confluent_api_key.dedicated-cluster-admin-api-key.secret
   }
-  lifecycle {
-    prevent_destroy = true
-  }
+#  lifecycle {
+#    prevent_destroy = true
+#  }
 }
 
 resource "confluent_kafka_topic" "stock_trades_2" {
@@ -53,7 +53,7 @@ resource "confluent_kafka_topic" "stock_trades_2" {
     key = confluent_api_key.dedicated-cluster-admin-api-key.id
     secret = confluent_api_key.dedicated-cluster-admin-api-key.secret
   }
-  lifecycle {
-    prevent_destroy = true
-  }
+#  lifecycle {
+#    prevent_destroy = true
+#  }
 }

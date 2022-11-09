@@ -16,9 +16,9 @@ resource "confluent_kafka_cluster" "dedicated" {
     id = confluent_network.aws_peered.id
   }
 
-  lifecycle {
-    prevent_destroy = true
-  }
+#  lifecycle {
+#    prevent_destroy = true
+#  }
 }
 
 resource "confluent_role_binding" "dedicated-cluster-sa-rb" {
