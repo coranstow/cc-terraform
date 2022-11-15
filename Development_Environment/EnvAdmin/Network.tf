@@ -50,3 +50,7 @@ resource "confluent_peering" "aws-peer-cstow" {
 #    prevent_destroy = true
 #  }
 }
+
+output "network" {
+  value = confluent_network.aws_peered.id
+}

@@ -23,6 +23,11 @@ variable "service_accounts" {
   type = map
 }
 
+variable "service_accounts_apikey" {
+  description = "Service accounts that need to be defined and that need a CCloud APIKey"
+  type = map
+}
+
 #variable "role_bindings" {
 #  description = "RoleBindings for Service Accounts"
 #  type = map

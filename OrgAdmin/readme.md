@@ -1,4 +1,4 @@
-This is for resources at an Organization level.
+This is for resources at an Organization level, but are not related specifically to an environment.
 
 ## Requires:
 - User Account with OrgAdmin RoleBinding
@@ -7,11 +7,3 @@ This is for resources at an Organization level.
 
 ## Administers
 - Service Accounts
-
-
-Resources include:
-* Cloud
-* Environment
-* Cluster
-* Schema Registry (Not in Terraform yet)
-* ksqlDB (Not in Terraform yet)
