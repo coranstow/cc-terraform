@@ -3,8 +3,6 @@ variable "environment_vars" {
   type  = map(string)
 }
 
-
-
 resource "confluent_environment" "environment" {
   display_name = lookup(var.environment_vars, "environment-name")
 #  lifecycle {

@@ -17,3 +17,7 @@ resource "confluent_kafka_topic" "stock_trades" {
 #    prevent_destroy = true
 #  }
 }
+
+output "stock-trades-topic" {
+  value = confluent_kafka_topic.stock_trades.topic_name
+}

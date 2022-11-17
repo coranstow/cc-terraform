@@ -208,3 +208,7 @@ resource "confluent_kafka_acl" "app-connector-write-on-stock_trades-topic" {
     secret = data.terraform_remote_state.EnvAdmin.outputs.dedicated-cluster-admin-cluster-apikey-secret
   }
 }
+
+output "s3-sink-connector-id" {
+  value = confluent_connector.aws_s3_sink.id
+}

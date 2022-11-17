@@ -69,4 +69,6 @@ resource "confluent_kafka_acl" "app-connector-write-on-target-topic" {
 }
 
 
-
+output "stock-trades-datagen-connector-id" {
+  value = confluent_connector.stock_trades_datagen.id
+}
