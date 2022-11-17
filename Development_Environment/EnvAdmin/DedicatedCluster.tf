@@ -54,15 +54,6 @@ resource "confluent_role_binding" "cluster_sa_rb" {
   #    prevent_destroy = true
   #  }
 }
-resource "confluent_api_key" "dedicated-cluster-admin-cloud-api-key" {
-  display_name = "Dedicated Cluster Admin CCloud API key"
-  description = "Terraform managed APIKey for Cloud cluster admin"
-  owner {
-    id = data.confluent_service_account.clusteradmin.id
-    api_version = data.confluent_service_account.clusteradmin.api_version
-    kind = data.confluent_service_account.clusteradmin.kind
-  }
-}
 
 #resource "confluent_kafka_cluster_config" "dedicated_config" {
 #  kafka_cluster {
@@ -119,12 +110,3 @@ output "dedicated-cluster-admin-cluster-apikey-secret" {
   value = confluent_api_key.dedicated-cluster-admin-api-key.secret
   sensitive = true
 }
-
-output "dedicated-cluster-admin-cloud-apikey" {
-  value = confluent_api_key.dedicated-cluster-admin-cloud-api-key
-  sensitive = true
-}
-#output "dedicated-cluster-admin-cloud-apikey-secret" {
-#  value = confluent_api_key.dedicated-cluster-admin-cloud-api-key.secret
-#  sensitive = true
-#}

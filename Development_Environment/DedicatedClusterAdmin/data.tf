@@ -29,7 +29,7 @@ data "confluent_kafka_cluster" "current" {
 }
 
 data "confluent_service_account" "clusteradmin" {
-  id = data.terraform_remote_state.Org.outputs.ServiceAccounts["dev-dedicated-cluster-sa"].id
+  id = data.terraform_remote_state.Org.outputs.ServiceAccounts_apikey["dev-dedicated-cluster-sa"].id
 }
 
 data "confluent_service_account" "clusteruser" {
@@ -39,3 +39,4 @@ data "confluent_service_account" "clusteruser" {
 #data "confluent_api_key" "cloud-api-key" {
 #  id = data.terraform_remote_state.Org.outputs.confluent_apikey_service_accounts_list["dev-dedicated-cluster-sa"].id
 #}
+

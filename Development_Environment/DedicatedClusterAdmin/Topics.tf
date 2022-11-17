@@ -10,8 +10,8 @@ resource "confluent_kafka_topic" "stock_trades" {
     "retention.ms" = "604800000"
   }
   credentials {
-    key = data.terraform_remote_state.Org.outputs.confluent_apikey_service_accounts_list["dev-dedicated-cluster-sa"].id
-    secret = data.terraform_remote_state.Org.outputs.confluent_apikey_service_accounts_list["dev-dedicated-cluster-sa"].secret
+    key = data.terraform_remote_state.EnvAdmin.outputs.dedicated-cluster-admin-cluster-apikey
+    secret = data.terraform_remote_state.EnvAdmin.outputs.dedicated-cluster-admin-cluster-apikey-secret
   }
 #  lifecycle {
 #    prevent_destroy = true
