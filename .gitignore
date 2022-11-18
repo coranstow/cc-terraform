@@ -3,6 +3,6 @@
 secrets.tfvars
 secrets.auto.tfvars
 apikey.auto.tfvars
-terraform.tfstate
-terraform.tfstate.backup
+terraform.tfstate.*
 ServiceAccount.txt
+*.iml
