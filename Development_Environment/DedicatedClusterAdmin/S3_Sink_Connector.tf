@@ -1,4 +1,5 @@
 resource "confluent_connector" "aws_s3_sink" {
+  ## Context for this connector
   environment {
     id = data.confluent_environment.current.id
   }
@@ -6,6 +7,7 @@ resource "confluent_connector" "aws_s3_sink" {
     id = data.confluent_kafka_cluster.current.id
   }
 
+  ## Config that should not be output. Usually API Keys,
   config_sensitive = {
     "kafka.api.key"         = "${data.terraform_remote_state.EnvAdmin.outputs.dedicated-cluster-admin-cluster-apikey}"
     "kafka.api.secret"      = "${data.terraform_remote_state.EnvAdmin.outputs.dedicated-cluster-admin-cluster-apikey-secret}"
@@ -18,7 +20,7 @@ resource "confluent_connector" "aws_s3_sink" {
     "kafka.auth.mode"          = "SERVICE_ACCOUNT"
 #    "kafka.service.account.id" = data.confluent_service_account.clusteradmin.id
     "tasks.max"                = "1"
-    "topics"                   = "${confluent_kafka_topic.stock_trades.topic_name}"
+    "topics"                   = "${confluent_kafka_topic.orders.topic_name}"
     "input.data.format"        = "JSON"
     "kafka.auth.mode"          = "KAFKA_API_KEY"
     "s3.bucket.name"           = "cstow-example"
@@ -191,12 +193,12 @@ resource "confluent_kafka_acl" "admin-read-on-connect-cg" {
   }
 }
 
-resource "confluent_kafka_acl" "app-connector-write-on-stock_trades-topic" {
+resource "confluent_kafka_acl" "app-connector-write-on-orders-topic" {
   kafka_cluster {
     id = data.confluent_kafka_cluster.current.id
   }
   resource_type = "TOPIC"
-  resource_name = confluent_kafka_topic.stock_trades.topic_name
+  resource_name = confluent_kafka_topic.orders.topic_name
   pattern_type  = "LITERAL"
   principal     = "User:${data.confluent_service_account.clusteruser.id}"
   host          = "*"

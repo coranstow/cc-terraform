@@ -22,3 +22,25 @@ resource "confluent_stream_governance_cluster" "essentials" {
 #    prevent_destroy = true
 #  }
 }
+
+## No documentation yet on how to create a key for the SR
+#resource "confluent_api_key" "app-user-schema-api-key" {
+#  display_name = "app-user-schema-api-key"
+#  description  = "Schema Registry API Key that is owned by 'app-user' service account"
+#  owner {
+#    id          = data.confluent_service_account.clusteruser.id
+#    api_version = data.confluent_service_account.clusteruser.api_version
+#    kind        = data.confluent_service_account.clusteruser.kind
+#  }
+#
+#  managed_resource {
+#    id            = confluent_stream_governance_cluster.essentials.id
+#    api_version   = confluent_stream_governance_cluster.essentials.api_version
+#    kind          = confluent_stream_governance_cluster.essentials.kind
+##    http_endpoint = confluent_stream_governance_cluster.essentials.http_endpoint
+#
+#    environment {
+#      id = data.confluent_environment.current.id
+#    }
+#  }
+#}

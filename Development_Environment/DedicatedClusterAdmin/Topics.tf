@@ -1,8 +1,8 @@
-resource "confluent_kafka_topic" "stock_trades" {
+resource "confluent_kafka_topic" "orders" {
   kafka_cluster {
     id = data.confluent_kafka_cluster.current.id
   }
-  topic_name = "stock_trades"
+  topic_name = "orders"
   partitions_count = 12
   rest_endpoint = data.confluent_kafka_cluster.current.rest_endpoint
   config = {
@@ -18,6 +18,6 @@ resource "confluent_kafka_topic" "stock_trades" {
 #  }
 }
 
-output "stock-trades-topic" {
-  value = confluent_kafka_topic.stock_trades.topic_name
+output "orders-topic" {
+  value = confluent_kafka_topic.orders.topic_name
 }

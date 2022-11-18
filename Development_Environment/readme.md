@@ -27,6 +27,6 @@ The Service Account for Environment Admin is provisioned elsewhere and is a depe
 - network - A Confluent Cloud network that was provisioned for this environment
 
 ### CloudClusterAdmin
-- stock-trades-topic = the name of a topic
+- orders-topic = the name of a topic
 - s3-sink-connector-id - the Confluent Cloud ID of the S3 sink connector
-- stock-trades-datagen-connector-id - the Confluent Cloud ID of the Datagen source connector
+- orders-datagen-connector-id - the Confluent Cloud ID of the Datagen source connector
