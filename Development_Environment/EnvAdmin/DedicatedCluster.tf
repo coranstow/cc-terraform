@@ -44,10 +44,9 @@ resource "confluent_api_key" "dedicated-cluster-admin-api-key" {
       id = data.confluent_environment.current.id
     }
   }
-}
-
-output "dedicated-cluster-api-key" {
-  value = confluent_api_key.dedicated-cluster-admin-api-key.id
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 #resource "confluent_kafka_cluster_config" "dedicated_config" {
@@ -81,8 +80,30 @@ resource "confluent_api_key" "dedicated-cluster-user-api-key" {
       id = data.confluent_environment.current.id
     }
   }
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+
+
+output "dedicated-cluster" {
+  value = confluent_kafka_cluster.dedicated.id
 }
 
 output "dedicated-cluster-user-api-key" {
   value = confluent_api_key.dedicated-cluster-user-api-key.id
+}
+
+output "dedicated-cluster-user-api-key-secret" {
+  value = confluent_api_key.dedicated-cluster-user-api-key.secret
+  sensitive = true
+}
+
+output "dedicated-cluster-admin-cluster-apikey" {
+  value = confluent_api_key.dedicated-cluster-admin-api-key.id
+}
+output "dedicated-cluster-admin-cluster-apikey-secret" {
+  value = confluent_api_key.dedicated-cluster-admin-api-key.secret
+  sensitive = true
 }

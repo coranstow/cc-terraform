@@ -16,8 +16,9 @@ data "confluent_environment" "current" {
   id = data.terraform_remote_state.OrgAdmin.outputs.env
 }
 
+
 data "confluent_service_account" "clusteradmin" {
-  id = lookup(data.terraform_remote_state.Org.outputs.ServiceAccounts, "dev-dedicated-cluster-sa").id
+  id = lookup(data.terraform_remote_state.Org.outputs.ServiceAccounts_apikey, "dev-dedicated-cluster-sa").id
 }
 
 data "confluent_service_account" "clusteruser" {
