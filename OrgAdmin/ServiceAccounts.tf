@@ -4,12 +4,20 @@ resource "confluent_service_account" "confluent_service_accounts_list" {
   for_each = var.service_accounts
   display_name = each.key
   description = each.value
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "confluent_service_account" "confluent_service_accounts_apikey_list" {
   for_each = var.service_accounts_apikey
   display_name = each.key
   description = each.value
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "confluent_api_key" "confluent_apikey_service_accounts_list" {
@@ -22,8 +30,8 @@ resource "confluent_api_key" "confluent_apikey_service_accounts_list" {
     api_version = confluent_service_account.confluent_service_accounts_apikey_list[each.key].api_version
     kind        = confluent_service_account.confluent_service_accounts_apikey_list[each.key].kind
   }
-#  lifecycle {
-#    prevent_destroy = true
-#  }
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 

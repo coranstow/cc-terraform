@@ -44,15 +44,9 @@ resource "confluent_api_key" "dedicated-cluster-admin-api-key" {
       id = data.confluent_environment.current.id
     }
   }
-}
-
-resource "confluent_role_binding" "cluster_sa_rb" {
-  principal = "User:${data.confluent_service_account.clusteruser.id}"
-  role_name = "CloudClusterAdmin"
-  crn_pattern = confluent_kafka_cluster.dedicated.rbac_crn
-  #  lifecycle {
-  #    prevent_destroy = true
-  #  }
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 #resource "confluent_kafka_cluster_config" "dedicated_config" {
@@ -85,6 +79,9 @@ resource "confluent_api_key" "dedicated-cluster-user-api-key" {
     environment {
       id = data.confluent_environment.current.id
     }
+  }
+  lifecycle {
+    prevent_destroy = true
   }
 }
 

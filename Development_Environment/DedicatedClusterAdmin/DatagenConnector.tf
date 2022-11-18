@@ -28,9 +28,9 @@ resource "confluent_connector" "stock_trades_datagen" {
 #    confluent_kafka_acl.app-connector-write-on-data-preview-topics,
   ]
 
-#  lifecycle {
-#    prevent_destroy = true
-#  }
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 #resource "confluent_kafka_acl" "app-connector-describe-on-cluster" {
@@ -74,6 +74,9 @@ resource "confluent_role_binding" "app-connector-developerwrite-on-target-topic-
   principal   = "User:${data.confluent_service_account.clusteruser.id}"
   role_name   = "DeveloperWrite"
   crn_pattern = "${data.confluent_kafka_cluster.current.rbac_crn}/kafka=${data.confluent_kafka_cluster.current.id}/topic=${confluent_kafka_topic.orders.topic_name}"
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 output "orders-datagen-connector-id" {
   value = confluent_connector.stock_trades_datagen.id

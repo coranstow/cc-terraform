@@ -27,9 +27,9 @@ resource "confluent_peering" "aws-peer-sa" {
   network {
     id = confluent_network.aws_peered.id
   }
-#  lifecycle {
-#    prevent_destroy = true
-#  }
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "confluent_peering" "aws-peer-cstow" {
@@ -46,9 +46,9 @@ resource "confluent_peering" "aws-peer-cstow" {
   network {
     id = confluent_network.aws_peered.id
   }
-#  lifecycle {
-#    prevent_destroy = true
-#  }
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 output "network" {

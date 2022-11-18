@@ -18,9 +18,9 @@ resource "confluent_stream_governance_cluster" "essentials" {
     id = data.confluent_stream_governance_region.development.id
   }
 
-#  lifecycle {
-#    prevent_destroy = true
-#  }
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 ## No documentation yet on how to create a key for the SR
