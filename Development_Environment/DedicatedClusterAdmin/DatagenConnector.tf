@@ -81,3 +81,47 @@ resource "confluent_role_binding" "app-connector-developerwrite-on-target-topic-
 output "orders-datagen-connector-id" {
   value = confluent_connector.stock_trades_datagen.id
 }
+
+resource "confluent_connector" "orders2_datagen" {
+  environment {
+    id = data.confluent_environment.current.id
+  }
+  kafka_cluster {
+    id = data.confluent_kafka_cluster.current.id
+  }
+
+  config_sensitive = {}
+
+  config_nonsensitive = {
+    "connector.class"          = "DatagenSource"
+    "name"                     = "DatagenSourceConnector_Orders2"
+    "kafka.auth.mode"          = "SERVICE_ACCOUNT"
+    "kafka.service.account.id" = data.confluent_service_account.clusteruser.id
+    "kafka.topic"              = confluent_kafka_topic.orders2.topic_name
+    "output.data.format"       = "JSON"
+    "quickstart"               = "ORDERS"
+    "tasks.max"                = "5"
+  }
+
+  depends_on = [
+    confluent_role_binding.app-connector-developerwrite-on-target-topic-rb
+    #    confluent_kafka_acl.app-connector-describe-on-cluster,
+    #    confluent_kafka_acl.app-connector-write-on-target-topic
+    #  ,
+    #    confluent_kafka_acl.app-connector-create-on-data-preview-topics,
+    #    confluent_kafka_acl.app-connector-write-on-data-preview-topics,
+  ]
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "confluent_role_binding" "app-connector-developerwrite-on-target-topic-rb2" {
+  principal   = "User:${data.confluent_service_account.clusteruser.id}"
+  role_name   = "DeveloperWrite"
+  crn_pattern = "${data.confluent_kafka_cluster.current.rbac_crn}/kafka=${data.confluent_kafka_cluster.current.id}/topic=${confluent_kafka_topic.orders2.topic_name}"
+  lifecycle {
+    prevent_destroy = true
+  }
+}

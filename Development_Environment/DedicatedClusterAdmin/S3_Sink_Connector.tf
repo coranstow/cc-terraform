@@ -18,12 +18,12 @@ resource "confluent_connector" "aws_s3_sink" {
     "connector.class"          = "S3_SINK"
     "name"                     = "S3_Sink"
     "tasks.max"                = "1"
-    "topics"                   = "${confluent_kafka_topic.orders.topic_name}"
+    "topics"                   = "${confluent_kafka_topic.orders.topic_name},${confluent_kafka_topic.orders2.topic_name}" #Comma-delimited list of topics
     "input.data.format"        = "JSON" #Valid values are AVRO, JSON_SR, PROTOBUF, JSON, or BYTES
     "kafka.auth.mode"          = "KAFKA_API_KEY" #Alternative is to use SERVICE_ACCOUNT and supply the id of the service account.
     #"kafka.auth.mode"          = "SERVICE_ACCOUNT"
     #"kafka.service.account.id" = data.confluent_service_account.clusteradmin.id
-    "s3.bucket.name"           = "cstow-example"
+    "s3.bucket.name"           = "cstow-example" # This is where you put your bucket name
     "output.data.format"       = "JSON"
     "topics.dir"               = "dedicated-cluster" #Prefix for where to place the topics being sunk
     "time.interval"            = "HOURLY"
