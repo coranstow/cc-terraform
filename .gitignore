@@ -4,5 +4,5 @@ secrets.tfvars
 secrets.auto.tfvars
 apikey.auto.tfvars
 terraform.tfstate.*
-ServiceAccount.txt
+terraform.tfstate
 *.iml
